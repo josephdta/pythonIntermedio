@@ -1,0 +1,112 @@
+openapi: 3.0.0
+info:
+  title: Rest Api
+  description: Api para elaboración de tareas 
+  version: 1.0.1
+servers:
+- url: http://localhost:8090/rest/task-api/v1.0 
+  description: SwaggerHub API Auto Mocking
+paths:
+  /register_task:
+    post:
+      tags:
+      - Registro de tarea
+      summary: Registro de tarea
+      description: Endpoint para el registro de tareas
+      operationId: register_task
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskRequest'
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskResponse'
+      x-openapi-router-controller: swagger_server.controllers.registro_de_tarea_controller.RegisterTaskView
+  /register_user:
+    post:
+      tags:
+      - Registro de usuario
+      summary: Registro de usuario
+      description: Endpoint para el registro de usuarios
+      operationId: register_user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRequest'
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+      x-openapi-router-controller: swagger_server.controllers.registro_de_usuario_controller.RegisterUserView
+components:
+  schemas:
+    TaskRequest:
+      properties:
+        name:
+          type: string
+          example: Ordenar libros
+        state:
+          type: string
+          example: Iniciado
+        end_date:
+          type: string
+          example: 10/05/2023
+        begin_date:
+          type: string
+          example: 3/05/2023
+    TaskResponse:
+      properties:
+        id:
+          type: string
+          example: "1"
+        name:
+          type: string
+          example: Ordenar libros
+        state:
+          type: string
+          example: Iniciado
+        end_date:
+          type: string
+          example: 10/05/2023
+        begin_date:
+          type: string
+          example: 3/05/2023
+      example:
+        end_date: 10/05/2023
+        begin_date: 3/05/2023
+        name: Ordenar libros
+        id: "1"
+        state: Iniciado
+    UserRequest:
+      properties:
+        name:
+          type: string
+          example: A
+        email:
+          type: string
+          example: a@gmail.com
+    UserResponse:
+      properties:
+        id:
+          type: string
+          example: "1"
+        name:
+          type: string
+          example: A
+        email:
+          type: string
+          example: a@gmail.com
+      example:
+        name: A
+        id: "1"
+        email: a@gmail.com
+
